@@ -29,4 +29,37 @@ foreach ($user_found as $key => $value) {
 - We changed the `find_all_users()` method to a static function so that we can call it
  by simply doing `$result_set = User::find_all_users();`
 
-START ON LECTURE 39
+- Lecture 43: Instantiation
+  - we created a method that is given user data from the database and then we instantiate a user object
+
+```php
+public static function instantiation($found_user) {
+	$the_object = new self;
+
+	$the_object->id = $found_user['id'];
+	$the_object->username = $found_user['username'];
+	$the_object->password = $found_user['password'];
+	$the_object->first_name = $found_user['first_name'];
+	$the_object->last_name = $found_user['last_name'];
+
+	return $the_object;
+}
+```
+
+  - this would be incredibly tedious if we had like 50 columns
+
+## Built-in PHP Functions to Research
+- get_object_vars
+- array_key_exists
+
+
+## OOP Notes
+- to echo a Class object's property:
+
+```php
+$found_user = User::find_user_by_id(1);
+
+echo $found_user->username;
+```
+
+- Start on Lecture 49: Undeclared OBject
