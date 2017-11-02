@@ -10,7 +10,24 @@ class Session {
 
 		session_start();
 		$this->check_the_login();
+		$this->check_message();
+	}
 
+	public function message($msg = "") {
+		if(!empty($msg)) {
+			$_SESSION['message'] = $msg;
+		} else {
+			return $this->message;
+		}
+	}
+
+	private function check_message() {
+		if(isset($_SESSION['message'])) {
+			$this->message = $_SESSION['message'];
+			unset($_SESSION['message']);
+		} else {
+			$this->message = "";
+		}
 	}
 
 	// this is called a 'getter' because $signed_in is private and this function simply returns that value

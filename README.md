@@ -1,10 +1,17 @@
 # README
 
 ## Built-in PHP Functions to Research
+- __FILE__
+- __LINE__
+- __DIR__
 - array_key_exists()
+- file_exists()
 - get_object_vars()
+- htmlentities()
+- is_file()
 - session_start()
 - unset()
+
 
 ## OOP Notes
 - Call a Class method, inside the class
@@ -115,13 +122,38 @@ spl_autoload_register('classAutoLoader');
 ```
 
 - He recommends using `require_once()` as opposed to `include_once()` as it's more secure.
--
+- To upload a file, we need to do a couple things:
 
+```html
+<form action="upload.php" enctype="multipart/form-data" method="post">
+  <input type="file" name="file_upload"> <br>
+  <input type="submit" name="submit">
+</form>
+```
+  - the key part is the `enctype="multipart/form-data"`
+- When uploading a file, we use the Super Global `$_FILES['file_name']`
+- There are 5 keys in the associative array `$_FILES['file_name']`:
+  - name -> file name
+  - type -> jpg, png, gif, doc, etc....
+  - size -> in bytes
+  - tmp_name -> a temporary name
+  - error -> the error code, if one
+- Here is an example of the output:
 
-- Finished Lecture 63; Start 64
+```html
+Array
+(
+    [name] => Screen Shot 2017-11-02 at 9.59.20 AM.png
+    [type] => image/png
+    [tmp_name] => /Applications/MAMP/tmp/php/phpvu6o9J
+    [error] => 0
+    [size] => 379826
+)
+```
+  - the tmp_name is what we'll need to move the file around and put it somewhere useful to us
+- there are 8 error codes when uploading a file
 
-
-
+- Finished L74; Start L75
 
 
 
