@@ -84,18 +84,63 @@ class User {
 	}
 
 
+	// Create Method
+	public function create() {
+
+		global $database;
+
+
+		// I wouldn't do it this way; I'd just bind the parameters
+		$sql = "INSERT INTO users (username, password, first_name, last_name) VALUES('";
+		$sql .= $database->escaped_string($this->username) . "', '";
+		$sql .= $database->escaped_string($this->password) . "', '";
+		$sql .= $database->escaped_string($this->first_name) . "', '";
+		$sql .= $database->escaped_string($this->last_name) . "')";
+
+		if($database->query($sql)) {
+			$this->id = $database->the_insert_id();
+			return true;
+		} else {
+			return false;
+		}
+		
+	}
+
+	// Update Method
+	public function update() {
+		global $database;
+
+		$sql = "UPDATE users SET ";
+		$sql .= "username= '" . $database->escaped_string($this->username) . "', ";
+		$sql .= "password= '" . $database->escaped_string($this->password) . "', ";
+		$sql .= "first_name= '" . $database->escaped_string($this->first_name) . "', ";
+		$sql .= "last_name= '" . $database->escaped_string($this->last_name) . "' ";
+		$sql .= " WHERE id= " . $database->escaped_string($this->id);
+
+		
+		$database->query($sql);	
+
+		return (mysqli_affected_rows($database->connection) == 1) ? true : false;
+	}
+
+
+	// Delete Method
+	public function delete() {
+		global $database;
+
+		$sql = "DELETE FROM users WHERE id = " . $database->escaped_string($this->id) . " LIMIT 1";
+
+		$database->query($sql);
+
+		return (mysqli_affected_rows($database->connection) == 1) ? true : false;
+
+	}
 
 
 
 
 
-
-
-
-
-
-
-}
+} // End of User Class
 
 
 

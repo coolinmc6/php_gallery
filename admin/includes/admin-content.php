@@ -28,15 +28,26 @@
             //     echo $user->username . "<br>";
             // }
 
-            $found_user = User::find_user_by_id(1);
+            // $found_user = User::find_user_by_id(1);
 
-            echo $found_user->username;
+            // echo $found_user->username;
 
-            // $car = new Cars();
+            // $user = new User();
 
-            // $car->run();
+            // $user->username = "Christopher";
+            // $user->password = "never";
+            // $user->first_name = "bob";
+            // $user->last_name = "henderson";
 
+            // $user->create();
 
+            // $user = User::find_user_by_id(3);
+            // $user->last_name = "WILLIAMS";
+
+            // $user->update();
+
+            $user = User::find_user_by_id(3);
+            $user->delete();
 
 
              ?>

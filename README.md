@@ -14,12 +14,21 @@
 
 
 ## OOP Notes
+
+### Methods
 - Call a Class method, inside the class
 
 ```php
 $this->check_the_login();
 ```
+- Call a Class method statically
 
+```php
+$user = User::find_user_by_id(1);
+```
+
+
+### Properties
 - Output a Class object's property:
 
 ```php
@@ -152,8 +161,29 @@ Array
 ```
   - the tmp_name is what we'll need to move the file around and put it somewhere useful to us
 - there are 8 error codes when uploading a file
+- Uploading a file is pretty easy:
+  1. Get the temporary name of file
+  2. Get the actual name of file
+  3. Define the directory that you want to put it
+  4. Use `move_uploaded_file()` to move the file
+    - `move_uploaded_file()` requires the temp name of the file and the directory/new_name
+  5. The `move_uploaded_file()` returns a true/false value, so we can use our error reporting code 
 
-- Finished L74; Start L75
+```php
+$temp_name = $_FILES['file_upload']['tmp_name'];
+$the_file = $_FILES['file_upload']['name'];
+$directory = "uploads";
+
+if(move_uploaded_file($temp_name, $directory . "/" . $the_file)) {
+  $the_message = "File uploaded successfully";
+} else {
+  $the_error = $_FILES['file_upload']['error'];
+
+  $the_message = $upload_errors[$the_error];
+}
+```
+
+- Finish L84, Start L85
 
 
 
