@@ -5,12 +5,44 @@
 - __LINE__
 - __DIR__
 - array_key_exists()
+- array_keys()
+- array_values()
 - file_exists()
 - get_object_vars()
 - htmlentities()
+- implode()
 - is_file()
+- property_exists();
 - session_start()
 - unset()
+
+
+## Database Tables
+
+### Users
+
+```sql
+CREATE TABLE `gallery`.`users` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `username` VARCHAR(255) NULL,
+  `password` VARCHAR(255) NULL,
+  `first_name` VARCHAR(255) NULL,
+  `last_name` VARCHAR(255) NULL,
+  PRIMARY KEY (`id`));
+```
+
+### Photos
+
+```sql
+CREATE TABLE `gallery`.`photos` (
+  `photo_id` INT NOT NULL AUTO_INCREMENT,
+  `title` VARCHAR(255) NULL,
+  `description` TEXT NULL,
+  `filename` VARCHAR(255) NULL,
+  `type` VARCHAR(255) NULL,
+  `size` INT(11) NULL,
+  PRIMARY KEY (`photo_id`));
+```
 
 
 ## OOP Notes
@@ -43,20 +75,18 @@ echo $found_user->username;
 $this->user_id = $_SESSION['user_id'];
 ```
 
+### Abstraction
+- We created a property in our User class that allows us to abstract the name of our database table
+from our SQL queries. This makes our code more portable: `protected static $db_table = "users";`
+
+```php
+// An example from the delete() method:
+$sql = "DELETE FROM " . self::$db_table . " WHERE id = " . $database->escaped_string($this->id) . " LIMIT 1";
+```
+
+
 
 ## Lecture Notes
-
-- Create `users` table:
-
-```sql
-CREATE TABLE `gallery`.`users` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `username` VARCHAR(255) NULL,
-  `password` VARCHAR(255) NULL,
-  `first_name` VARCHAR(255) NULL,
-  `last_name` VARCHAR(255) NULL,
-  PRIMARY KEY (`id`));
-```
 
 - `<?php ob_start() ?>` turns on output buffering
 - This is how we query the database:
@@ -183,7 +213,24 @@ if(move_uploaded_file($temp_name, $directory . "/" . $the_file)) {
 }
 ```
 
-- Finish L84, Start L85
+- We are about to abstraction; here is the original create() method (most of it):
+
+```php
+$sql = "INSERT INTO " . self::$db_table . " (username, password, first_name, last_name) VALUES('";
+$sql .= $database->escaped_string($this->username) . "', '";
+$sql .= $database->escaped_string($this->password) . "', '";
+$sql .= $database->escaped_string($this->first_name) . "', '";
+$sql .= $database->escaped_string($this->last_name) . "')";
+
+if($database->query($sql)) {
+  $this->id = $database->the_insert_id();
+  return true;
+} else {
+  return false;
+}
+```
+
+- Finished L102; Start L103
 
 
 

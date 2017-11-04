@@ -32,22 +32,37 @@
 
             // echo $found_user->username;
 
-            // $user = new User();
+            $user = new User();
 
-            // $user->username = "Christopher";
-            // $user->password = "never";
-            // $user->first_name = "bob";
-            // $user->last_name = "henderson";
+            $user->username = "StNew Users 6";
+            $user->password = "learningissweet";
+            $user->first_name = "Bob";
+            $user->last_name = "Duff";
 
-            // $user->create();
+            $user->create();
 
-            // $user = User::find_user_by_id(3);
-            // $user->last_name = "WILLIAMS";
+            // $user = User::find_user_by_id(4);
+            // $user->last_name = "SmithField";
+            // $user->first_name = "Mister";
+            // $user->password = "password";
+            // $user->username = "updateUser45557";
 
             // $user->update();
 
-            $user = User::find_user_by_id(3);
-            $user->delete();
+            // $user = User::find_by_id(4);
+            // print_r($user);
+
+            // $users = USER::find_all();
+            // print_r($users);
+
+            // $user = User::find_user_by_id(4);
+            // $user->last_name = "LastName";
+            // $user->save();
+
+            // $user = new User();
+            // $user->username = "MyNewUser57";
+            // $user->save();
+
 
 
              ?>
