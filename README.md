@@ -47,6 +47,38 @@ CREATE TABLE `gallery`.`photos` (
 
 ## OOP Notes
 
+### OOP Methods Discussed
+
+#### Create()
+
+### OOP Discussion Break (Finished L102)
+- up to this point, we've built mostly just the user class and then in the last couple lectures
+we extracted most of the methods into a parent class called `Db_object`
+- One of the first things that I noticed as we were building these methods is their similarity to Rails,
+which makes sense, in that there is a create, update, save, and delete methods.
+- I also noticed how we created `find_by_id()` and `find_all()` which I think came with Rails for free
+- I first want to walk through how we create a new User:
+
+```php
+// 1. Instantiate a new User object
+$user = new User();
+
+// 2. Assign the object its properties (username, password, etc.)
+$user->username = "Another User";
+$user->password = "maadsfasdfadsf";
+$user->first_name = "Christopher";
+$user->last_name = "Banks";
+
+// 3. Call the save() method
+$user->save();
+```
+
+- If I print the `$user` object I get: `User Object ( [id] => [username] => Another User [password] => maadsfasdfadsf [first_name] => Christopher [last_name] => Banks )`
+  - notice how the `id` is NOT set, this allows the `save()` method to then use the correct method, `create()`, 
+  as opposed to `update()`
+- In the `save()` method, as I said above, the User object gets sent to the `create()` method
+-
+
 ### Methods
 - Call a Class method, inside the class
 
@@ -229,6 +261,8 @@ if($database->query($sql)) {
   return false;
 }
 ```
+
+
 
 - Finished L102; Start L103
 

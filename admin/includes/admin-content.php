@@ -34,12 +34,14 @@
 
             $user = new User();
 
-            $user->username = "StNew Users 6";
-            $user->password = "learningissweet";
-            $user->first_name = "Bob";
-            $user->last_name = "Duff";
+            $user->username = "Another User";
+            $user->password = "maadsfasdfadsf";
+            $user->first_name = "Christopher";
+            $user->last_name = "Banks";
 
-            $user->create();
+            print_r($user);
+
+            $user->save();
 
             // $user = User::find_user_by_id(4);
             // $user->last_name = "SmithField";

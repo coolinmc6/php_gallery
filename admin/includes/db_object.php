@@ -3,21 +3,16 @@
 
 class Db_object {
 
-	// protected static $db_table = "users";
-
-	// find_all, find_by_id, find_by_query, instantiation, has_the_attribute, 
+	
 	public static function find_all() {
-		// global $database;
 
-		// $result_set = $database->query('SELECT * FROM users');
-		// return $result_set;
 		return static::find_by_query('SELECT * FROM ' . static::$db_table);
 	}
 
 
 	public static function find_by_id($id) {
 		global $database;
-		$array = static::find_by_query("SELECT * FROM ". static::$db_table . " WHERE id= $id LIMIT 1;");
+		$array = static::find_by_query("SELECT * FROM ". static::$db_table . " WHERE id = $id LIMIT 1;");
 		
 		return !empty($array) ? array_shift($array) : false;
 		
@@ -44,17 +39,13 @@ class Db_object {
 		$calling_class = get_called_class();
 		$the_object = new $calling_class;
 
-		// $the_object->id = $found_user['id'];
-		// $the_object->username = $found_user['username'];
-		// $the_object->password = $found_user['password'];
-		// $the_object->first_name = $found_user['first_name'];
-		// $the_object->last_name = $found_user['last_name'];
-
 		foreach ($the_record as $attribute => $value) {
 			if($the_object->has_the_attribute($attribute)) {
 				$the_object->$attribute = $value;
 			}
 		}
+
+		// echo 'An object was created!';
 
 		return $the_object;
 	}
@@ -66,7 +57,7 @@ class Db_object {
 		return array_key_exists($attribute, $object_properties);
 	}
 
-	
+
 
 	protected function properties() {
 		// return get_object_vars($this);
@@ -108,7 +99,16 @@ class Db_object {
 
 		global $database;
 
+		// echo "<pre>";
+		// print_r($database);
+		// echo "</pre>";
+
 		$properties = $this->clean_properties();
+
+		// echo "<pre>";
+		// print_r($properties);
+		// echo "</pre>";
+		
 
 
 		
