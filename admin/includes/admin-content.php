@@ -32,16 +32,16 @@
 
             // echo $found_user->username;
 
-            $user = new User();
+            // $user = new User();
 
-            $user->username = "Another User";
-            $user->password = "maadsfasdfadsf";
-            $user->first_name = "Christopher";
-            $user->last_name = "Banks";
+            // $user->username = "Another User";
+            // $user->password = "maadsfasdfadsf";
+            // $user->first_name = "Christopher";
+            // $user->last_name = "Banks";
 
-            print_r($user);
+            // print_r($user);
 
-            $user->save();
+            // $user->save();
 
             // $user = User::find_user_by_id(4);
             // $user->last_name = "SmithField";
@@ -65,7 +65,24 @@
             // $user->username = "MyNewUser57";
             // $user->save();
 
+           
 
+            // $photo = new Photo();
+            // $photo->title = "Second Photo";
+            // $photo->description = "lorem isuasdfasdf";
+            // $photo->filename = "second-photo.png";
+            // $photo->type = "png";
+            // $photo->size = "4352";
+
+            // $photo->save();
+            
+            //  $photos = Photo::find_all();
+
+            // foreach ($photos as $photo) {
+            //     echo $photo->filename . "<hr>";
+            // }
+
+            
 
              ?>
             <ol class="breadcrumb">

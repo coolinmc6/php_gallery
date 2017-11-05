@@ -7,11 +7,15 @@
 - array_key_exists()
 - array_keys()
 - array_values()
+- basename()
+- empty();
 - file_exists()
 - get_object_vars()
 - htmlentities()
 - implode()
 - is_file()
+- join();
+- move_uploaded_file();
 - property_exists();
 - session_start()
 - unset()
