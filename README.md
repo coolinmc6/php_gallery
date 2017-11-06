@@ -18,6 +18,7 @@
 - move_uploaded_file();
 - property_exists();
 - session_start()
+- unlink()
 - unset()
 
 
@@ -47,7 +48,8 @@ CREATE TABLE `gallery`.`photos` (
   `size` INT(11) NULL,
   PRIMARY KEY (`photo_id`));
 ```
-
+  - **NOTE:** I changed the name of the column to 'id' in L118
+  - **NOTE:** I added a caption and alternate_text field
 
 ## OOP Notes
 
@@ -266,11 +268,8 @@ if($database->query($sql)) {
 }
 ```
 
-
-
-- Finished L102; Start L103
-
-
+- finish L124, Start L125
+- **NOTE:** Two changes made to the database. See the notes above to see the specifics.
 
 
 

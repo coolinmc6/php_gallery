@@ -4,10 +4,10 @@
 defined('DS') ? null : define('DS', DIRECTORY_SEPARATOR);
 
 // HOME
-define('SITE_ROOT', DS . 'Applications' . DS . "XAMPP" . DS . "htdocs" . DS . "php_gallery");
+// define('SITE_ROOT', DS . 'Applications' . DS . "XAMPP" . DS . "htdocs" . DS . "php_gallery");
 
 // WORK
-
+define('SITE_ROOT', DS . 'Applications' . DS . "MAMP" . DS . "htdocs" . DS . "php_gallery");
 
 defined('INCLUDES_PATH') ? null : define("INCLUDES_PATH", SITE_ROOT . DS . 'admin' . DS . 'includes');
 

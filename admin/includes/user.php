@@ -11,9 +11,6 @@ class User extends Db_object {
 	public $first_name;
 	public $last_name;
 
-
-
-
 	public static function verify_user($username, $password) {
 		global $database;
 
@@ -29,14 +26,6 @@ class User extends Db_object {
 
 		return !empty($the_result_array) ? array_shift($the_result_array) : false;
 	}
-
-	
-	
-
-
-	
-
-
 
 
 } // End of User Class
