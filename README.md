@@ -35,6 +35,7 @@ CREATE TABLE `gallery`.`users` (
   `last_name` VARCHAR(255) NULL,
   PRIMARY KEY (`id`));
 ```
+ - **NOTE:** I added a user_image column
 
 ### Photos
 
