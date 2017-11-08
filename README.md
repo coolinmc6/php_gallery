@@ -52,6 +52,20 @@ CREATE TABLE `gallery`.`photos` (
   - **NOTE:** I changed the name of the column to 'id' in L118
   - **NOTE:** I added a caption and alternate_text field
 
+### Comments
+
+```sql
+CREATE TABLE `comments` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `photo_id` int(11) NOT NULL,
+  `author` varchar(255) DEFAULT NULL,
+  `body` longtext,
+  PRIMARY KEY (`id`),
+  KEY `index2` (`photo_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+```
+
+
 ## OOP Notes
 
 ### OOP Methods Discussed
@@ -269,10 +283,10 @@ if($database->query($sql)) {
 }
 ```
 
-- finish L124, Start L125
+
 - **NOTE:** Two changes made to the database. See the notes above to see the specifics.
 
-
+- finish L155, Start L156
 
 
 
