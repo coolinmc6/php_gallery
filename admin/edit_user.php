@@ -52,6 +52,55 @@ if(isset($_POST['update'])) {
 
         <div id="page-wrapper">
 
+			<?php 
+
+			$photos = Photo::find_all();
+
+
+			 ?>
+
+
+        	<!-- Modal -->
+
+        	<div class="modal fade" id="photo-modal">
+        	  <div class="modal-dialog">
+        	    <div class="modal-content">
+        	      <div class="modal-header">
+        	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        	        <h4 class="modal-title">Gallery System Library</h4>
+        	      </div>
+        	      <div class="modal-body">
+        	          <div class="col-md-9">
+        	             <div class="thumbnails row">
+        	            
+        	                <?php foreach($photos as $photo): ?>
+        	                
+        	               <div class="col-xs-2">
+        	                 <a role="checkbox" aria-checked="false" tabindex="0" id="" href="#" class="thumbnail">
+        	                   <img class="modal_thumbnails img-responsive" src="<?php echo $photo->picture_path() ?>" data="">
+        	                 </a>
+        	                  <div class="photo-id hidden"></div>
+        	               </div>
+
+        	                <?php endforeach; ?>
+
+        	             </div>
+        	          </div><!--col-md-9 -->
+        	  <div class="col-md-3">
+        	    <div id="modal_sidebar"></div>
+        	  </div>
+
+        	   </div><!--Modal Body-->
+        	      <div class="modal-footer">
+        	        <div class="row">
+        	               <!--Closes Modal-->
+        	              <button id="set_user_image" type="button" class="btn btn-primary" disabled="true" data-dismiss="modal">Apply Selection</button>
+        	        </div>
+        	      </div>
+        	    </div><!-- /.modal-content -->
+        	  </div><!-- /.modal-dialog -->
+        	</div><!-- /.modal -->
+
             	<div class="container-fluid">
 
             	    <!-- Page Heading -->
@@ -62,7 +111,7 @@ if(isset($_POST['update'])) {
             	            </h1>
 
             	            <div class="col-md-3">
-            	            	<img class="img-responsive" src="<?php echo $user->image_path_and_placeholder(); ?>" alt="">
+            	            	<a href="#" data-toggle="modal" data-target="#photo-modal"><img class="img-responsive" src="<?php echo $user->image_path_and_placeholder(); ?>" alt=""></a>
             	            </div>
             	            <form method="post" enctype="multipart/form-data">
 	            	            
@@ -98,7 +147,7 @@ if(isset($_POST['update'])) {
 									
 									<div class="form-group">
 
-										<a class="btn btn-danger" href="delete_user.php?id=<?php echo $user->id ?>">Delete</a>
+										<a id="user-id" class="btn btn-danger" href="delete_user.php?id=<?php echo $user->id ?>">Delete</a>
 	            	            		
 	            	            		<input type="submit" name="update" class="btn btn-primary pull-right" value="Update">
 	            	            	</div>

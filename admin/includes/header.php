@@ -18,7 +18,7 @@
 
     <!-- Custom CSS -->
     <link href="css/sb-admin.css" rel="stylesheet">
-    <link href="css/styles.css" rel="stylesheet">
+    <link href="css/styles.css?<?php echo rand() ?>" rel="stylesheet">
     
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <!-- Custom Fonts -->

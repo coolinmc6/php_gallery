@@ -286,7 +286,7 @@ if($database->query($sql)) {
 
 - **NOTE:** Two changes made to the database. See the notes above to see the specifics.
 
-- finish L186, start L187
+- finish L196, start L197
 
 
 
