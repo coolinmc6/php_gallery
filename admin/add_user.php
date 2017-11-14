@@ -17,7 +17,9 @@ if(isset($_POST['create'])) {
 
 		$user->set_file($_FILES['user_image']);
 
-		$user->save_user_and_image();
+		$user->upload_photo();
+
+		$user->save();
 		
 
 		

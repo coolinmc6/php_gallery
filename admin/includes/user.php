@@ -86,9 +86,40 @@ class User extends Db_object {
 	} // end of Save method
 
 	public function ajax_save_user_image($user_image, $user_id) {
+		// $this->user_image = $user_image;
+		// $this->id = $user_id;
+		// $this->save();
+
+		global $database;
+		$user_image = $database->escaped_string($user_image);
+		$user_id = $database->escaped_string($user_id);
+
 		$this->user_image = $user_image;
 		$this->id = $user_id;
-		$this->save();
+
+
+		$sql = "UPDATE " . self::$db_table . " SET user_image = '{$this->user_image}' 
+				 WHERE id = {$this->id} ";
+			 
+		$database->query($sql);
+
+		echo $this->image_path_and_placeholder();
+	}
+
+	public function delete_photo() {
+
+
+		if($this->delete()) {
+
+			$target_path = SITE_ROOT.DS. 'admin' . DS . $this->upload_directory . DS . $this->user_image;
+
+			return unlink($target_path) ? true : false;
+			
+		} else {
+
+			return false;
+		}
+
 	}
 
 

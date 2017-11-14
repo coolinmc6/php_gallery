@@ -21,6 +21,8 @@ if(isset($_POST['update'])) {
 
 		if(empty($_FILES['user_image'])) {
 			$user->save();
+            redirect("users.php");   
+            $session->message("The user has been updated.");
 		} else {
 			$user->set_file($_FILES['user_image']);
 
@@ -28,7 +30,10 @@ if(isset($_POST['update'])) {
 			
 			$user->save();
 
-			redirect("edit_user.php?id={$user->id}");	
+            $session->message("The user has been updated.");
+
+			// redirect("edit_user.php?id={$user->id}");	
+            redirect("users.php"); 
 		}
 
 		
@@ -77,7 +82,7 @@ if(isset($_POST['update'])) {
         	                
         	               <div class="col-xs-2">
         	                 <a role="checkbox" aria-checked="false" tabindex="0" id="" href="#" class="thumbnail">
-        	                   <img class="modal_thumbnails img-responsive" src="<?php echo $photo->picture_path() ?>" data="">
+        	                   <img class="modal_thumbnails img-responsive" src="<?php echo $photo->picture_path() ?>" data="<?php echo $photo->id; ?>">
         	                 </a>
         	                  <div class="photo-id hidden"></div>
         	               </div>
@@ -110,7 +115,7 @@ if(isset($_POST['update'])) {
             	                Add User
             	            </h1>
 
-            	            <div class="col-md-3">
+            	            <div class="col-md-3 user_image_box" >
             	            	<a href="#" data-toggle="modal" data-target="#photo-modal"><img class="img-responsive" src="<?php echo $user->image_path_and_placeholder(); ?>" alt=""></a>
             	            </div>
             	            <form method="post" enctype="multipart/form-data">
