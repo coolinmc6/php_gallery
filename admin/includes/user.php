@@ -85,6 +85,12 @@ class User extends Db_object {
 
 	} // end of Save method
 
+	public function ajax_save_user_image($user_image, $user_id) {
+		$this->user_image = $user_image;
+		$this->id = $user_id;
+		$this->save();
+	}
+
 
 } // End of User Class
 
