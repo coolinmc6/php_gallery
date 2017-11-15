@@ -72,9 +72,7 @@ CREATE TABLE `comments` (
 
 ## OOP Notes
 
-***
 ### Database Class
-
 
 ```php
 function __construct() {
@@ -83,8 +81,6 @@ function __construct() {
 ```
 - This method is run automatically when the object is instantiated
 - for this function, it is simply establishing the connection to the database
-
-
 
 ```php
 public function open_db_connection() {
@@ -101,7 +97,6 @@ public function open_db_connection() {
 - This is the base for everything else we do. Our query method is built off
 of this which then several other methods build off of that
 - Of most importance here is that it is a mysqli object
-
 
 ```php
 public function query($sql) {
@@ -125,7 +120,7 @@ two methods: the one we made and the built-in myslqi method
 ```php
 $database = new Database();
 ```
-- The line above declares the $database variable which is a new instance of the Database
+- The line above declares the `$database` variable which is a new instance of the Database
 class. As I started to see, to use the database in any particular method, I need to access
 that variable, which I do by including `global $database`. Here is a write-up I borrowed
 from online to explain why that's the case:
