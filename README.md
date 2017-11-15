@@ -120,10 +120,43 @@ we do below.
   - `$this->connection` is our mysqli object
   - `->query($sql)` is the mysqli_query
 - don't be confused by the fact that the name of our method is "query", we do have
-two: our method and the built-in myslqi method
+two methods: the one we made and the built-in myslqi method
+
+```php
+$database = new Database();
+```
+- The line above declares the $database variable which is a new instance of the Database
+class. As I started to see, to use the database in any particular method, I need to access
+that variable, which I do by including `global $database`. Here is a write-up I borrowed
+from online to explain why that's the case:
+  - we need to use `global` in order to "bring in" the `$database` variable __inside the current__ 
+   __scope that we are currently working in__, like in a method of a particular class, if you 
+  want to use `$database` and it's methods, you need to bring it inside of the scope of the method 
+  that you're trying to use it in. 
+  - Each method or regular function has it's own scope, if you want to bring in some variable 
+  that's declared outside of the scope of that function, you need to bring it inside that 
+  function scope, with `global $variableName;`.
 
 ***
 ### Db_object Class
+
+#### Find_by_Query()
+
+```php
+public static function find_by_query($sql) {
+  global $database;
+  $result_set = $database->query($sql);
+  $object_array = array();
+  
+  while($row = mysqli_fetch_array($result_set)) {
+
+    $object_array[] = static::instantiation($row);
+  }
+
+  return $object_array;
+}
+```
+- one of the first things that I noticed was the `global $database` declaration.
 
 #### Find_All()
 - the parent class for the method is `Db_object` so it is available to ALL classes

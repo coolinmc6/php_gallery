@@ -59,9 +59,6 @@ class Db_object {
 			$object_array[] = static::instantiation($row);
 		}
 
-
-
-		
 		return $object_array;
 	}
 
