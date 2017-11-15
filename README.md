@@ -74,8 +74,9 @@ CREATE TABLE `comments` (
 
 ### OOP Methods Discussed
 
+***
 #### Database Class
-======
+***
 
 ```php
 function __construct() {
@@ -125,7 +126,7 @@ two: our method and the built-in myslqi method
 
 
 #### Db_object Class
-======
+***
 
 #### Find_All()
 - the parent class for the method is `Db_object` so it is available to ALL classes
