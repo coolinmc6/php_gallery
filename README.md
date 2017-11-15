@@ -10,6 +10,10 @@
 - basename()
 - empty();
 - file_exists()
+- get_called_class()
+  - used in our static instatiation method of db_object, it simply gets the name of the class
+  the static method is called in.
+  - will return a string of the class name or `FALSE` if called from outside a class
 - get_object_vars()
 - htmlentities()
 - implode()
@@ -70,6 +74,103 @@ CREATE TABLE `comments` (
 
 ### OOP Methods Discussed
 
+#### Database Class
+======
+
+```php
+function __construct() {
+  $this->open_db_connection();
+}
+```
+- This method is run automatically when the object is instantiated
+- for this function, it is simply establishing the connection to the database
+
+
+
+```php
+public function open_db_connection() {
+  // $this->connection = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);  
+
+  $this->connection = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+
+  if($this->connection->connect_errno) {
+    die('Database connection failed' . $this->connection->connect_errno);
+  }
+}
+```
+- This method sets our `$connection` property equal to a new mysqli object
+- This is the base for everything else we do. Our query method is built off
+of this which then several other methods build off of that
+- Of most importance here is that it is a mysqli object
+
+
+```php
+public function query($sql) {
+
+  // $result = mysqli_query($this->connection, $sql);
+
+  $result = $this->connection->query($sql);
+
+  return $result;
+}
+```
+- This looks simple but several things are happening here.
+- We are setting `$result` to our query (as in mysqli_query) given some SQL
+- mysqli query are run by doing `$mysqli_object->query()` and that's exactly what
+we do below.
+  - `$this->connection` is our mysqli object
+  - `->query($sql)` is the mysqli_query
+- don't be confused by the fact that the name of our method is "query", we do have
+two: our method and the built-in myslqi method
+
+
+#### Db_object Class
+======
+
+#### Find_All()
+- the parent class for the method is `Db_object` so it is available to ALL classes
+
+```php
+public static function find_all() {
+
+  return static::find_by_query('SELECT * FROM ' . static::$db_table);
+}
+```
+- The first thing I noticed was the SQL which is pretty much just a select all from a particular
+table.  But what table?
+- The `static::$db_table` is called late static binding. I haven't dug too deep into it but it
+takes the place of self or this in a normal class method / property.
+  - For my db_object, by using `static::` before the method or property, I am allowing the child
+  class to be the class calling the method.
+- Now starting from the beginning, this method is `public` and `static`. Public means that it can be
+called outside the class and `static` means that the method is accessible WITHOUT needing an
+instantiation of the class. 
+- This method simply returns the results of another method we've created, `find_by_query()`, which
+is also static.  We call it statically by doing `static::find_by_query([SQL STATEMENT])`
+- Our `find_by_query()` method takes one argument, the SQL statement, which as I said before, is
+just a `SELECT * FROM` and then the table name is added into the statement using `static::$db_table`
+  - What we do NOT see here is that $db_table property is set for each class. So the User class has
+  a table `users`, Photo class has `photos`, etc.
+  - Note: not every class needs to access the database so the Session class, which doesn't need to
+  insert anything related to the session into the db, doesn't have a `$db_table`
+
+#### Find_By_ID()
+- the parent class for the method is `Db_object` so it is available to ALL classes
+
+```php
+public static function find_by_id($id) {
+  global $database;
+  $array = static::find_by_query("SELECT * FROM ". static::$db_table . " WHERE id = $id LIMIT 1;");
+  
+  return !empty($array) ? array_shift($array) : false;
+  
+}
+```
+- this function returns a single object based on the id. What is not obvious here is that the `find_by_query()`
+method
+
+
+
 #### Create()
 
 ### OOP Discussion Break (Finished L102)
@@ -100,7 +201,10 @@ $user->save();
 - In the `save()` method, as I said above, the User object gets sent to the `create()` method
 -
 
-### Methods
+### OOP Discussion Break (course completed)
+
+
+### OOP Methods
 - Call a Class method, inside the class
 
 ```php
@@ -113,7 +217,7 @@ $user = User::find_user_by_id(1);
 ```
 
 
-### Properties
+### OOP Properties
 - Output a Class object's property:
 
 ```php
@@ -128,7 +232,7 @@ echo $found_user->username;
 $this->user_id = $_SESSION['user_id'];
 ```
 
-### Abstraction
+### OOP Abstraction
 - We created a property in our User class that allows us to abstract the name of our database table
 from our SQL queries. This makes our code more portable: `protected static $db_table = "users";`
 
