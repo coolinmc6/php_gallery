@@ -4,26 +4,26 @@
 - `__FILE__`
 - `__LINE__`
 - `__DIR__`
-- `array_key_exists()``
-- `array_keys()``
-- `array_values()``
-- `basename()``
-- `empty();``
-- `file_exists()``
-- `get_called_class()``
+- `array_key_exists()`
+- `array_keys()`
+- `array_values()`
+- `basename()`
+- `empty();`
+- `file_exists()`
+- `get_called_class()`
   - used in our static instatiation method of db_object, it simply gets the name of the class
   the static method is called in.
   - will return a string of the class name or `FALSE` if called from outside a class
-- `get_object_vars()``
-- `htmlentities()``
-- `implode()``
-- `is_file()``
-- `join();``
-- `move_uploaded_file();``
-- `property_exists();``
-- `session_start()``
-- `unlink()``
-- `unset()``
+- `get_object_vars()`
+- `htmlentities()`
+- `implode()`
+- `is_file()`
+- `join();`
+- `move_uploaded_file();`
+- `property_exists();`
+- `session_start()`
+- `unlink()`
+- `unset()`
 
 
 ## Database Tables
