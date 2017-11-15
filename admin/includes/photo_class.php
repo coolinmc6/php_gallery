@@ -60,7 +60,6 @@ class Photo extends Db_object {
 
 	public function delete_photo() {
 
-
 		if($this->delete()) {
 
 			$target_path = SITE_ROOT.DS. 'admin' . DS . $this->picture_path();
@@ -85,11 +84,6 @@ class Photo extends Db_object {
 
 		echo $output;
 	}
-
-
-
-
-
 
 }
 
