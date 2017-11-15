@@ -72,11 +72,9 @@ CREATE TABLE `comments` (
 
 ## OOP Notes
 
-### OOP Methods Discussed
+***
+### Database Class
 
-***
-#### Database Class
-***
 
 ```php
 function __construct() {
@@ -124,9 +122,8 @@ we do below.
 - don't be confused by the fact that the name of our method is "query", we do have
 two: our method and the built-in myslqi method
 
-
-#### Db_object Class
 ***
+### Db_object Class
 
 #### Find_All()
 - the parent class for the method is `Db_object` so it is available to ALL classes
@@ -174,6 +171,19 @@ method
 
 #### Create()
 
+***
+### User
+
+
+***
+### Photo
+
+
+***
+### Comment
+
+
+***
 ### OOP Discussion Break (Finished L102)
 - up to this point, we've built mostly just the user class and then in the last couple lectures
 we extracted most of the methods into a parent class called `Db_object`
